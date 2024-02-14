@@ -1,15 +1,20 @@
-from langchain_community.vectorstores import DocArrayInMemorySearch
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableParallel, RunnablePassthrough
 from langchain_openai.chat_models import ChatOpenAI
 from langchain_openai.embeddings import OpenAIEmbeddings
+from langchain.text_splitter import CharacterTextSplitter
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_pinecone import Pinecone
 
-vectorstore = DocArrayInMemorySearch.from_texts(
+loader = PyPDFLoader("data/ahmed.pdf")
+documents = loader.load()
+text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+docs = text_splitter.split_documents(documents)
+embeddings = OpenAIEmbeddings()
 
-    ["Ahmed worked at RootCode", "bears like to eat honey"],
-    embedding=OpenAIEmbeddings(),
-)
+vectorstore = Pinecone.from_documents(docs, embeddings, namespace="test")
+
 retriever = vectorstore.as_retriever()
 
 template = """Answer the question based only on the following context:
@@ -26,4 +31,4 @@ setup_and_retrieval = RunnableParallel(
 )
 chain = setup_and_retrieval | prompt | model | output_parser
 
-chain.invoke("where did ahmed work?")
+chain.invoke("where did ahmed study?")
