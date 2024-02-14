@@ -2,5 +2,6 @@ langchain-core
 langchain-community
 langchain-openai
 langchain
+langchain-pinecone
 docarray
 tiktoken
