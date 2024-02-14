@@ -1,3 +1,6 @@
 langchain-core
 langchain-community
 langchain-openai
+langchain
+docarray
+tiktoken
