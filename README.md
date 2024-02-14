@@ -2,7 +2,12 @@
 
 ## Welcome to the LCEL Tutorial Repository
 
-This repository is designed to guide you through the basics to advanced concepts of LangChain Expression Language (LCEL), enabling the construction of complex, stateful LLM applications.
+This repository is structured to guide learners through both theoretical concepts and practical exercises on LangChain Expression Language (LCEL), enabling the construction of complex, stateful LLM applications.
+
+## Repository Structure
+
+- **/exercises**: Contains Python files with coding exercises to practice LCEL in real-world scenarios.
+- **/theory**: Contains Markdown (.md) files with detailed tutorials and theoretical explanations to deepen your understanding of LCEL concepts.
 
 ## Tutorial List
 
