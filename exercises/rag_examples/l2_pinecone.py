@@ -1,4 +1,5 @@
 import os
+import asyncio
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableParallel, RunnablePassthrough
@@ -9,7 +10,7 @@ from langchain_pinecone import Pinecone
 embeddings = OpenAIEmbeddings()
 index_name = os.environ['PINECONE_INDEX_NAME']
 
-vectorstore = Pinecone.from_existing_index(embedding=embeddings, index_name=index_name, namespace="test")
+vectorstore = Pinecone.from_existing_index(embedding=embeddings, index_name=index_name, namespace="ahmed")
 
 retriever = vectorstore.as_retriever()
 
@@ -27,4 +28,34 @@ setup_and_retrieval = RunnableParallel(
 )
 chain = setup_and_retrieval | prompt | model | output_parser
 
-print(chain.invoke("where did ahmed works now?"))
+
+# Sync
+# invoke
+# print(chain.invoke("where did ahmed works now?"))
+
+# stream
+# for chunk in chain.stream("where did ahmed works now?"):
+#     print(chunk, end="", flush=True)
+
+# batch
+# print(chain.batch(["where did ahmed works now?", "Where Ahmed use to worked?", "you know where ahmed study?"]))
+
+# Async
+# Invoke
+# async def main():
+#     print(await chain.ainvoke("where did ahmed study now?"))
+
+
+# Stream
+async def main():
+    async for chunk in chain.astream("where did ahmed works now?"):
+        print(chunk, end="", flush=True)
+
+
+# Batch async def main(): print(await chain.abatch(["where did ahmed works now?", "Where Ahmed use to worked?",
+# "you know where ahmed study?"]))
+
+
+# Run the main coroutine
+if __name__ == "__main__":
+    asyncio.run(main())
