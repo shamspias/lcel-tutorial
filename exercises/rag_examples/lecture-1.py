@@ -6,7 +6,8 @@ from langchain_openai.chat_models import ChatOpenAI
 from langchain_openai.embeddings import OpenAIEmbeddings
 
 vectorstore = DocArrayInMemorySearch.from_texts(
-    ["harrison worked at kensho", "bears like to eat honey"],
+
+    ["Ahmed worked at RootCode", "bears like to eat honey"],
     embedding=OpenAIEmbeddings(),
 )
 retriever = vectorstore.as_retriever()
@@ -25,4 +26,4 @@ setup_and_retrieval = RunnableParallel(
 )
 chain = setup_and_retrieval | prompt | model | output_parser
 
-chain.invoke("where did harrison work?")
+chain.invoke("where did ahmed work?")
