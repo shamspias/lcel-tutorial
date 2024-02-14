@@ -1,19 +1,15 @@
+import os
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableParallel, RunnablePassthrough
 from langchain_openai.chat_models import ChatOpenAI
 from langchain_openai.embeddings import OpenAIEmbeddings
-from langchain.text_splitter import CharacterTextSplitter
-from langchain_community.document_loaders import PyPDFLoader
 from langchain_pinecone import Pinecone
 
-loader = PyPDFLoader("data/ahmed.pdf")
-documents = loader.load()
-text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-docs = text_splitter.split_documents(documents)
 embeddings = OpenAIEmbeddings()
+index_name = os.environ['PINECONE_INDEX_NAME']
 
-vectorstore = Pinecone.from_documents(docs, embeddings, namespace="test")
+vectorstore = Pinecone.from_existing_index(embedding=embeddings, index_name=index_name, namespace="test")
 
 retriever = vectorstore.as_retriever()
 
@@ -31,4 +27,4 @@ setup_and_retrieval = RunnableParallel(
 )
 chain = setup_and_retrieval | prompt | model | output_parser
 
-chain.invoke("where did ahmed study?")
+print(chain.invoke("where did ahmed works now?"))
