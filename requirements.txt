@@ -3,6 +3,7 @@ langchain-community
 langchain-openai
 langchain
 langchain-pinecone
+gigachat
 docarray
 tiktoken
 pypdf
