@@ -1,6 +1,6 @@
 from langchain_openai import ChatOpenAI
 from langchain_openai import OpenAI
-from langchain_mistralai import ChatMistralAI
+from langchain_community.chat_models import ChatFireworks
 from langchain_community.chat_models import GigaChat
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
@@ -11,7 +11,7 @@ prompt = ChatPromptTemplate.from_template(
 )
 chat_openai = ChatOpenAI(model="gpt-3.5-turbo")
 openai = OpenAI(model="gpt-3.5-turbo-instruct")
-mistral = ChatMistralAI(model="mistral-small")
+mistral = ChatFireworks(model="mistral-small")
 gigachat = GigaChat(verify_ssl_certs=False)
 model = (
     chat_openai
@@ -20,8 +20,8 @@ model = (
         ConfigurableField(id="model"),
         default_key="chat_openai",
         openai=openai,
-        mistral=mistral,
         gigachat=gigachat,
+        mistral=mistral,
     )
 )
 
