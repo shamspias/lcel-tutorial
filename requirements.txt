@@ -1,6 +1,7 @@
 langchain-core
 langchain-community
 langchain-openai
+langchain-mistralai
 langchain
 langchain-pinecone
 gigachat
