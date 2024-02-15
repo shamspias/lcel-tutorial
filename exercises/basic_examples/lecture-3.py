@@ -1,5 +1,4 @@
-from langchain_openai import ChatOpenAI
-from langchain_openai import OpenAI
+from langchain_openai import OpenAI, ChatOpenAI
 from langchain_community.chat_models import ChatFireworks
 from langchain_community.chat_models import GigaChat
 from langchain_core.output_parsers import StrOutputParser
