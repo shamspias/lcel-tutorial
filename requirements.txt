@@ -5,6 +5,7 @@ langchain-mistralai
 langchain
 langchain-pinecone
 gigachat
+fireworks-ai
 docarray
 tiktoken
 pypdf
