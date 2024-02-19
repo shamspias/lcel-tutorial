@@ -4,9 +4,11 @@ langchain-openai
 langchain-mistralai
 langchain
 langchain-pinecone
+langchain-google-genai
 gigachat
 fireworks-ai
 docarray
 tiktoken
+pillow
 pypdf
 pymongo
