@@ -5,6 +5,7 @@ langchain-mistralai
 langchain
 langchain-pinecone
 langchain-google-genai
+langchain-groq
 gigachat
 fireworks-ai
 docarray
@@ -12,3 +13,4 @@ tiktoken
 pillow
 pypdf
 pymongo
+redis
