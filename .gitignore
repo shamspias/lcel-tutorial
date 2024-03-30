@@ -119,3 +119,5 @@ alembic/versions/*
 
 data/info.json
 data/info.json.*
+
+google_key_file.json
