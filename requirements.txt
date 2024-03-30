@@ -2,11 +2,13 @@ langchain-core
 langchain-community
 langchain-openai
 langchain-mistralai
-langchain
 langchain-pinecone
 langchain-google-genai
 langchain-groq
+langchain-google-vertexai
+langchain
 gigachat
+langchain_text_splitters
 fireworks-ai
 docarray
 tiktoken
