@@ -9,6 +9,7 @@ langchain-google-vertexai
 langchain
 gigachat
 langchain_text_splitters
+langchain-anthropic
 fireworks-ai
 docarray
 tiktoken
